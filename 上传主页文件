@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>电子与信息工程学院 · 江西信息应用职业技术学院</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f5f3eb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .main-card {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem 2.5rem 2rem 2rem;
+            box-shadow: 0 25px 40px -15px rgba(30, 100, 50, 0.3);
+            overflow: hidden;
+            border: 1px solid #c0d8b0;
+        }
+
+        /* 头部 —— 更亮绿色渐变，符合“亮一点”要求 */
+        .hero {
+            background: linear-gradient(145deg, #3aaa5f, #5ecb7a, #82dd9c);
+            color: white;
+            padding: 2.5rem 2.8rem 2.2rem 2.8rem;
+            position: relative;
+            z-index: 2;
+            border-bottom: 5px solid #f5c84e; /* 保留金色点缀 */
+        }
+
+        .hero::after {
+            content: "☯ 信";
+            position: absolute;
+            bottom: 10px;
+            right: 35px;
+            font-size: 5rem;
+            opacity: 0.1;
+            font-weight: 700;
+            color: #fff5d0;
+            transform: rotate(-3deg);
+            pointer-events: none;
+            font-family: "楷体", "KaiTi", serif;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 4px 10px rgba(0, 60, 20, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .hero h1 .school-name {
+            font-size: 1.6rem;
+            display: block;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-top: 8px;
+            letter-spacing: 1.5px;
+        }
+
+        .hero .subhead {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+            border-left: 5px solid #f5d97b;
+            padding-left: 1.2rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 0 60px 60px 0;
+            padding: 0.6rem 1.2rem;
+            width: fit-content;
+            backdrop-filter: blur(3px);
+        }
+
+        .hero .stats-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 1.8rem;
+        }
+
+        .hero .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255, 250, 200, 0.4);
+            box-shadow: 0 6px 14px rgba(0, 60, 20, 0.3);
+        }
+
+        .hero .stat-item strong {
+            font-size: 1.7rem;
+            margin-right: 6px;
+            color: #fffac2;
+        }
+
+        /* 内容区 */
+        .content {
+            padding: 2rem 2.5rem 2.8rem 2.5rem;
+            background: #fefef9;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #1f7042; /* 深绿但不过暗 */
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #bcd8a8;
+            padding-bottom: 0.6rem;
+        }
+
+        .section-title span {
+            background: #1f7042;
+            color: #f5f0d1;
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 1px;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem 0.8rem 0.8rem 0.8rem;
+            box-shadow: 0 8px 20px -8px rgba(30, 90, 40, 0.2);
+            border: 1px solid #b8d5b0;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 650px;
+            white-space: nowrap;
+        }
+
+        table th {
+            background: #e0f2dd;
+            color: #1f7042;
+            font-weight: 600;
+            padding: 0.7rem 0.4rem;
+            text-align: center;
+            border-bottom: 2px solid #3f9e5a;
+            font-size: 1rem;
+        }
+
+        table th small {
+            font-weight: 400;
+            font-size: 0.75rem;
+            display: block;
+            color: #2d6b3e;
+            margin-top: 2px;
+        }
+
+        table td {
+            padding: 0.65rem 0.4rem;
+            text-align: center;
+            border-bottom: 1px solid #cbe5cb;
+            color: #1a4a2a;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tbody tr:hover {
+            background-color: #daf1dc;
+            transition: 0.1s;
+        }
+
+        .highlight-col {
+            background-color: #fbf6e0;
+            font-weight: 600;
+            color: #1d6e3a;
+        }
+
+        .total-row {
+            background-color: #d4efd0;
+            font-weight: 600;
+            border-top: 2px solid #369b56;
+        }
+
+        .total-row td {
+            font-weight: 700;
+            color: #0d4221;
+        }
+
+        /* 联系板块 */
+        .contact-section {
+            background: #e8f3e5;
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            border: 1px solid #b1d1a5;
+            box-shadow: 0 8px 18px -8px #5d8b5d40;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin: 1.8rem 0 1rem;
+        }
+
+        .contact-text h2 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #1f7042;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-text p {
+            font-size: 1.15rem;
+            color: #2a613a;
+            max-width: 500px;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 6px 12px rgba(30, 80, 30, 0.1);
+            border-left: 6px solid #47a76a;
+            min-width: 280px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            color: #1c5e30;
+        }
+
+        .info-item .emoji {
+            font-size: 1.7rem;
+            background: #deefe0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cooperate-note {
+            background: #faf6e3;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            color: #1f7042;
+            font-weight: 500;
+            border: 1px dashed #7aaf7a;
+            display: inline-block;
+            margin-top: 1.2rem;
+        }
+
+        .cooperate-note i {
+            font-style: normal;
+            margin-right: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem;
+            color: #3c7540;
+            font-size: 0.92rem;
+        }
+
+        .footnote {
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+            background: #dff0db;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            display: inline-block;
+            border: 1px solid #aacba5;
+        }
+
+        .school-link {
+            color: #1f7042;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #e2b96b;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .hero h1 .school-name { font-size: 1.2rem; }
+            .hero { padding: 1.8rem 1.5rem; }
+            .content { padding: 1.8rem 1.2rem; }
+            .contact-section { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <!-- 头部：更亮绿色，标题顺序交换，数字更新 -->
+        <div class="hero">
+            <h1>
+                电子与信息工程学院
+                <span class="school-name">江西信息应用职业技术学院</span>
+            </h1>
+            <div class="subhead">· 诚信 · 博学 · 创新 · 求实 ·</div>
+            <div class="stats-badge">
+                <div class="stat-item"><strong>10</strong> 个专业</div>
+                <div class="stat-item"><strong>1169</strong> 名2026届毕业生</div>
+                <div class="stat-item"><strong>3067</strong> 名在校生</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section-title">
+                📋 专业设置 · 毕业生人数分布
+                <span>欢迎用人单位联系</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>专业名称</th>
+                            <th>23级<br><small>2026届毕业生</small></th>
+                            <th>24级</th>
+                            <th>25级</th>
+                            <th>总人数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>计算机网络</td><td class="highlight-col">252</td><td>166</td><td>133</td><td>551</td></tr>
+                        <tr><td>云计算技术与应用</td><td class="highlight-col">33</td><td>38</td><td>45</td><td>116</td></tr>
+                        <tr><td>现代通信技术</td><td class="highlight-col">53</td><td>36</td><td>94</td><td>183</td></tr>
+                        <tr><td>计算机应用技术</td><td class="highlight-col">437</td><td>317</td><td>257</td><td>1011</td></tr>
+                        <tr><td>信息安全技术应用</td><td class="highlight-col">0</td><td>38</td><td>91</td><td>129</td></tr>
+                        <tr><td>电子信息工程技术</td><td class="highlight-col">211</td><td>161</td><td>184</td><td>556</td></tr>
+                        <tr><td>应用电子技术</td><td class="highlight-col">30</td><td>20</td><td>81</td><td>131</td></tr>
+                        <tr><td>新能源汽车</td><td class="highlight-col">57</td><td>84</td><td>45</td><td>186</td></tr>
+                        <tr><td>物联网应用技术</td><td class="highlight-col">79</td><td>22</td><td>86</td><td>187</td></tr>
+                        <tr><td>智能控制技术</td><td class="highlight-col">17</td><td>0</td><td>0</td><td>17</td></tr>
+                    </tbody>
+                    <tfoot class="total-row">
+                        <td>合计</td>
+                        <td>1169</td>
+                        <td>882</td>
+                        <td>1016</td>
+                        <td>3067</td>
+                    </tfoot>
+                </table>
+                <div style="margin-top: 8px; color: #3f7645; font-size: 0.85rem; padding-left: 5px;">
+                    23级人数即为2026届毕业生人数（信息安全技术应用24/25级储备充足）。
+                </div>
+            </div>
+
+            <!-- 联系板块 (已删除指定内容，保留真实学校信息) -->
+            <div class="contact-section">
+                <div class="contact-text">
+                    <h2>🤝 校企合作邀请</h2>
+                    <p>电子与信息工程学院诚邀各用人单位来校选才，可安排专场宣讲、精准推荐。有招聘或实习需求欢迎联系我们。</p>
+                    <div class="cooperate-note">
+                        <i>📢</i> 长期接受企业实习/就业合作
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item"><span class="emoji">📞</span> <span>0791-85273256、85273257</span></div>
+                    <div class="info-item"><span class="emoji">📧</span> <span>jxciazb@163.com</span></div>
+                    <div class="info-item"><span class="emoji">📍</span> <span>南昌市青云谱区气象路58号</span></div>
+                    <div style="background: #e4f0df; border-radius: 30px; padding: 0.4rem 1rem; margin-top: 0.6rem; color: #1f7042;">
+                        🏢 电子与信息工程学院实训楼
+                    </div>
+                </div>
+            </div>
+
+            <!-- 专业特色短介 -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; justify-content: space-between;">
+                <div style="flex: 1; min-width: 180px;">
+                    <div style="font-size: 1.3rem; margin-bottom: 0.2rem; color: #1f7042;">📡 信息特色</div>
+                    <p style="color: #2e7440;">计算机网络、信息安全、云计算——国家级骨干专业</p>
+                </div>
+                <div style="flex: 1; min-width: 180px;">
+                    <div style="font-size: 1.3rem; margin-bottom: 0.2rem; color: #1f7042;">⚡ 电子&新能源</div>
+                    <p style="color: #2e7440;">新能源汽车、智能控制、电子信息工程技术实训雄厚</p>
+                </div>
+                <div style="flex: 1; min-width: 180px;">
+                    <div style="font-size: 1.3rem; margin-bottom: 0.2rem; color: #1f7042;">💻 物联网+应用</div>
+                    <p style="color: #2e7440;">物联网、计算机应用专业与产业深度融合</p>
+                </div>
+            </div>
+
+            <div class="footnote">
+                📅 数据更新至2026年3月 · 更多信息请访问 <a href="https://www.jxcia.com" target="_blank" class="school-link">江西信息应用职业技术学院官网</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 江西信息应用职业技术学院 · 电子与信息工程学院 ｜ 地址：南昌市青云谱区气象路58号
+    </footer>
+</body>
+</html>
